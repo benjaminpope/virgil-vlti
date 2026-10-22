@@ -1,0 +1,21 @@
+name: docs
+# Build check only. Nothing is published.
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - name: environment
+        run: |
+          uv venv --python 3.11 .venv
+          uv pip install --python .venv/bin/python -e ".[docs]"
+      - name: docs copies in sync with README.md and design/
+        run: .venv/bin/python scripts/sync_docs.py --check
+      - name: build (zensical)
+        run: .venv/bin/zensical build --clean --strict

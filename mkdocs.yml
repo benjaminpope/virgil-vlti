@@ -1,0 +1,89 @@
+# ===== mkdocs.yml =====
+# Configuration file for the automatic generation of package
+# documentation formatted with markdown, built with Zensical
+# (`zensical build --clean --strict`). The
+# pages are built, not published.
+
+# ===== Setup and Themes =====
+markdown_extensions:
+  - tables
+  - pymdownx.superfences
+  - pymdownx.highlight
+  - pymdownx.arithmatex:
+      generic: true
+
+extra_css:
+  - stylesheets/nav.css
+
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+site_name: virgil-vlti
+repo_url: https://github.com/benjaminpope/virgil-vlti
+
+theme:
+  name: material
+  palette:
+    scheme: slate
+  icon:
+    logo: material/telescope
+  features:
+    - navigation.sections
+
+# ===== Plugins =====
+plugins:
+  - search
+  - mkdocstrings:
+      default_handler: python
+      handlers:
+        python:
+          paths:
+            - src
+          options:
+            docstring_style: numpy
+            show_source: false
+            show_if_no_docstring: true
+            members_order: source
+            show_category_heading: false
+
+# ===== Navigation =====
+nav:
+  - Home: index.md
+  - Tutorials:
+      - "1. Calibrating GRAVITY products": calibration.md
+      - "2. The pair test": pair_test.md
+      - "3. Calibration templates for virgil": templates.md
+  - Instruments:
+      - GRAVITY: instruments/gravity.md
+      - PIONIER: instruments/pionier.md
+      - MATISSE: instruments/matisse.md
+  - Background:
+      - Plan: PLAN.md
+      - Provenance: PROVENANCE.md
+  - Design notes (background working notes, not user docs; may be out of date):
+      - "About these notes": design/README.md
+      - "GRAVITY calibration review": design/gravity_calibration_review.md
+      - "GRAVITY calibrator PCA": design/gravity_calibrator_pca.md
+      - "Questions for the GRAVITY team": design/questions_for_gravity_team.md
+      - "PIONIER systematics": design/pionier_systematics.md
+      - "MATISSE status": design/matisse.md
+      - "MATISSE calibration review": design/matisse_calibration_review.md
+      - "MATISSE implementation plan": design/matisse_plan.md
+  - Reference:
+      - "Command-line tools": command_line.md
+      - API:
+          - Overview: api/index.md
+          - Calibration: api/calibrate.md
+          - Products: api/products.md
+          - Writing: api/write.md
+          - "Loading into virgil": api/load.md
+          - "gravity_viscal port": api/viscal.md
+          - GRAVITY: api/gravity.md
+          - MATISSE: api/matisse.md
+          - "Pair test": api/pairs.md
+          - "Calibrator PCA": api/calpca.md
+          - "Null datasets": api/nulls.md
+          - Templates: api/templates.md
+          - "Simulated products": api/synthetic.md
+          - "Command-line entry points": api/cli.md

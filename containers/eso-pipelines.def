@@ -1,0 +1,34 @@
+# ESO's Apptainer definition for VLT pipelines, from
+# https://eso.org/sci/software/apptainer/eso-pipelines.def (fetched 2026-10-04),
+# with two changes marked below: the Fedora release is a build argument (ESO's file
+# pins fedora:41, end of life since 2025-12-15; ESO's repository also has the pipelines
+# for 42 and 43), and EDPS, ESO's recommended command-line workflow runner, is
+# installed so that reductions can run without the EsoReflex GUI.
+Bootstrap: docker
+From: fedora:{{ fedora }}
+
+%arguments
+  fedora=43
+
+%post
+  dnf install -y dnf-plugins-core
+  dnf update -y
+  dnf config-manager addrepo --from-repofile=https://ftp.eso.org/pub/dfs/pipelines/repositories/stable/fedora/esorepo.repo
+
+  esopipes_list="{{ pipelines }}"
+  IFS=';' read -r -a packages <<< "$esopipes_list"
+
+  for package in "${packages[@]}"
+  do
+    echo "Installing $package..."
+    dnf install -y esopipe-"$package" esopipe-"$package"-wkf
+    find /usr/share/reflex/workflows/$package* -type f -name "*.xml" -exec sed -i 's|value="/usr/share/esopipes/datademo/'"$package"'/"|value="$HOME/reflex_rawdata/"|g' {} +
+  done
+
+  # Addition (not in ESO's file): EDPS (the package is python3-edps; 1.8.1 on fc41).
+  dnf install -y python3-edps || dnf install -y edps || echo "EDPS package not found; esorex only"
+
+  dnf clean all
+%environment
+  export LC_ALL=C
+  export LANG=C

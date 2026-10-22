@@ -1,0 +1,1 @@
+../../design/noise_spec_emission.md

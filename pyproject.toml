@@ -1,0 +1,56 @@
+[project]
+name = "virgil-vlti"
+version = "0.1.0"
+description = "VLTI calibration and error models for virgil: GRAVITY calibration, plus PIONIER pair test and MATISSE header handling"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+authors = [{ name = "Benjamin Pope", email = "benjamin.pope@mq.edu.au" }]
+keywords = ["interferometry", "VLTI", "GRAVITY", "calibration", "OIFITS", "astronomy"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering :: Astronomy",
+]
+dependencies = ["numpy", "scipy", "astropy"]
+
+[project.optional-dependencies]
+virgil = ["virgil-astro>=0.3"]
+dev = ["pytest", "ruff==0.16.10", "virgil-astro>=0.3"]
+docs = ["mkdocstrings[python]>=0.30", "zensical>=0.0.62,<0.1"]
+
+[project.urls]
+Homepage = "https://github.com/benjaminpope/virgil-vlti"
+Repository = "https://github.com/benjaminpope/virgil-vlti"
+Issues = "https://github.com/benjaminpope/virgil-vlti/issues"
+Changelog = "https://github.com/benjaminpope/virgil-vlti/blob/main/CHANGELOG.md"
+
+[project.scripts]
+virgil-vlti-calibrate = "virgil_vlti.cli:main"
+virgil-vlti-pairs = "virgil_vlti.pairs_cli:main"
+virgil-vlti-calpca = "virgil_vlti.calpca_cli:main"
+virgil-vlti-template = "virgil_vlti.templates_cli:main"
+virgil-vlti-inspect = "virgil_vlti.inspect_cli:main"
+
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+virgil_vlti = ["templates/*.npz"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "C4", "SIM", "FURB"]

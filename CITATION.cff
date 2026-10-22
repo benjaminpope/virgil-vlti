@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "virgil-vlti"
+type: software
+version: 0.1.0
+date-released: 2026-10-21
+license: MIT
+repository-code: "https://github.com/benjaminpope/virgil-vlti"
+authors:
+  - family-names: Pope
+    given-names: Benjamin
+    email: benjamin.pope@mq.edu.au

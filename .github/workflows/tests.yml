@@ -1,0 +1,47 @@
+name: tests
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  tests:
+    name: py${{ matrix.python-version }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - name: environment
+        # virgil-astro comes from PyPI (the dev extra), for the tests that read
+        # the calibrated files back with virgil.
+        run: |
+          uv venv --python ${{ matrix.python-version }} .venv
+          uv pip install --python .venv/bin/python -e ".[dev]"
+      - name: lint
+        run: |
+          .venv/bin/ruff check .
+          .venv/bin/ruff format --check .
+      - name: tests
+        run: .venv/bin/python -m pytest -q
+
+  virgil-main:
+    # Blocking until virgil is released with the API to_oidata needs; then drop this job and
+    # raise the virgil extra. Pinned to a commit of virgil's main (bump it deliberately).
+    name: against virgil main
+    runs-on: ubuntu-latest
+    env:
+      VIRGIL_REF: 7b27e2818c27ecd4daedea8ad13cc78da130f548
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - name: environment
+        run: |
+          uv venv --python 3.12 .venv
+          uv pip install --python .venv/bin/python -e ".[dev]" \
+            "virgil-astro @ git+https://github.com/benjaminpope/virgil@${VIRGIL_REF}"
+      - name: tests
+        run: .venv/bin/python -m pytest -q

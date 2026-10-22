@@ -1,0 +1,1 @@
+../../design/architecture_review_2026-10.md
