@@ -1032,6 +1032,21 @@ wheels = [
 ]
 
 [[package]]
+name = "nufftax"
+version = "0.6.1"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "jax", version = "0.10.2", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.12'" },
+    { name = "jax", version = "0.11.2", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.12'" },
+    { name = "numpy", version = "2.4.6", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.12'" },
+    { name = "numpy", version = "2.5.3", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.12'" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/f4/c2/86bd672d8177c4c403174b5a0e5c2165d5dfda41bdfd1b3c11b428d2b576/nufftax-0.6.1.tar.gz", hash = "sha256:420961d47e935b145b4cc5db3ea86e12df7c376f0c6cba3d6d1ac7d41ba70d7d", size = 63407, upload-time = "2026-07-02T09:45:53.838Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/5a/f0/a991a7440ace5e61e2872920624db2d821aab51409ec7191e4428565caab/nufftax-0.6.1-py3-none-any.whl", hash = "sha256:29bf1d89a2cf9fdf132fcfbc28cbe0b674b4884ba20289029d9985f045405794", size = 37240, upload-time = "2026-07-02T09:45:52.342Z" },
+]
+
+[[package]]
 name = "numpy"
 version = "2.4.6"
 source = { registry = "https://pypi.org/simple" }
@@ -1799,7 +1814,7 @@ wheels = [
 
 [[package]]
 name = "virgil-astro"
-version = "0.3.0"
+version = "0.4.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "astropy" },
@@ -1809,6 +1824,7 @@ dependencies = [
     { name = "jaxbessel" },
     { name = "lineax" },
     { name = "matplotlib" },
+    { name = "nufftax" },
     { name = "numpy", version = "2.4.6", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.12'" },
     { name = "numpy", version = "2.5.3", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.12'" },
     { name = "numpyro" },
@@ -1818,9 +1834,9 @@ dependencies = [
     { name = "scipy", version = "1.18.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.12'" },
     { name = "zodiax" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/f0/29/0dfe79ad1c95417600bd90b24cce731782270900e536dd143235a2215421/virgil_astro-0.3.0.tar.gz", hash = "sha256:7087c7640edcac822b072daa6783076076841027e5b24c021c82ec385ddd8442", size = 296121, upload-time = "2026-10-06T01:12:15.357Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/2b/e6/93b524910f9a4c13ee8fd2b4672725670e486dc72bc615202c8beccd0e78/virgil_astro-0.4.0.tar.gz", hash = "sha256:ced99db2fd2b02e416ed782cad6b6325243cb55a7db8cf020f89c05c992672f4", size = 614746, upload-time = "2026-10-22T03:44:39.65Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/27/01/821f84c9810722c6e6bfd68567da0b4aa0450143187ee3ca9a012b2e5b71/virgil_astro-0.3.0-py3-none-any.whl", hash = "sha256:1d9ebf27d7a20ca6ce1d8d84b6bbf6d5de3faa5012b1a4cea3c2a05764dc9d85", size = 307732, upload-time = "2026-10-06T01:12:13.717Z" },
+    { url = "https://files.pythonhosted.org/packages/31/fe/a25ffb3ae7c7f1c9b3ccf5c07fd3ad46c664328b2ab20db5d73881d9cf4b/virgil_astro-0.4.0-py3-none-any.whl", hash = "sha256:a45cc6d7a992045f44f910098d1e37f91be43106d8f27d9775dc0830c0a775a4", size = 641994, upload-time = "2026-10-22T03:44:37.96Z" },
 ]
 
 [[package]]
@@ -1857,7 +1873,7 @@ requires-dist = [
     { name = "pytest", marker = "extra == 'dev'" },
     { name = "ruff", marker = "extra == 'dev'", specifier = "==0.16.10" },
     { name = "scipy" },
-    { name = "virgil-astro", marker = "extra == 'dev'", specifier = ">=0.3" },
+    { name = "virgil-astro", marker = "extra == 'dev'", specifier = ">=0.4" },
     { name = "virgil-astro", marker = "extra == 'virgil'", specifier = ">=0.3" },
     { name = "zensical", marker = "extra == 'docs'", specifier = ">=0.0.62,<0.1" },
 ]
