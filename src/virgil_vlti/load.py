@@ -282,8 +282,7 @@ def to_oidata(
     ):
         raise ImportError(
             "to_oidata needs OIData.select(ranges=...) and virgil.oidata._valid_samples, which "
-            "virgil-astro 0.3.0 lacks: install virgil-astro>=0.4.0 (until it is released, "
-            "virgil's main branch: pip install git+https://github.com/benjaminpope/virgil)"
+            "virgil-astro releases before 0.4.0 lack: install virgil-astro>=0.4.0"
         )
 
     if isinstance(paths, (str, os.PathLike)):
