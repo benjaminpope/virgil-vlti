@@ -19,8 +19,8 @@ classifiers = [
 dependencies = ["numpy", "scipy", "astropy"]
 
 [project.optional-dependencies]
-virgil = ["virgil-astro>=0.3"]
-dev = ["pytest", "ruff==0.16.10", "virgil-astro>=0.3"]
+virgil = ["virgil-astro>=0.4"]
+dev = ["pytest", "ruff==0.16.10", "virgil-astro>=0.4"]
 docs = ["mkdocstrings[python]>=0.30", "zensical>=0.0.62,<0.1"]
 
 [project.urls]

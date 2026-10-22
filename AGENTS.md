@@ -27,4 +27,4 @@ MATISSE is outside the maintainer's core expertise, so its code and notes are he
 | Tests | `.venv/bin/python -m pytest` |
 | Lint | `.venv/bin/ruff check . && .venv/bin/ruff format --check .` |
 
-`.[dev]` installs virgil-astro from PyPI, which lacks the API `to_oidata` needs (`OIData.select(ranges=)`, `_valid_samples`), so the loader tests skip. To run them, install virgil from main: `uv pip install --python .venv/bin/python "virgil-astro @ git+https://github.com/benjaminpope/virgil"`.
+`.[dev]` installs virgil-astro>=0.4 from PyPI, which has the API `to_oidata` needs (`OIData.select(ranges=)`, `_valid_samples`), so the loader tests run. To test against virgil's main branch instead: `uv pip install --python .venv/bin/python "virgil-astro @ git+https://github.com/benjaminpope/virgil"` (CI's `virgil-main` job does this).

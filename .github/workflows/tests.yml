@@ -29,12 +29,12 @@ jobs:
         run: .venv/bin/python -m pytest -q
 
   virgil-main:
-    # Blocking until virgil is released with the API to_oidata needs; then drop this job and
-    # raise the virgil extra. Pinned to a commit of virgil's main (bump it deliberately).
+    # Blocking: checks against virgil main, ahead of its next release. Pinned to a
+    # commit of virgil's main (bump it deliberately).
     name: against virgil main
     runs-on: ubuntu-latest
     env:
-      VIRGIL_REF: 7b27e2818c27ecd4daedea8ad13cc78da130f548
+      VIRGIL_REF: b4219a043294c39e26064ce54b4bc4c498ea22d5
     steps:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v6
