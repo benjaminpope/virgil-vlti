@@ -1874,7 +1874,7 @@ requires-dist = [
     { name = "ruff", marker = "extra == 'dev'", specifier = "==0.16.10" },
     { name = "scipy" },
     { name = "virgil-astro", marker = "extra == 'dev'", specifier = ">=0.4" },
-    { name = "virgil-astro", marker = "extra == 'virgil'", specifier = ">=0.3" },
+    { name = "virgil-astro", marker = "extra == 'virgil'", specifier = ">=0.4" },
     { name = "zensical", marker = "extra == 'docs'", specifier = ">=0.0.62,<0.1" },
 ]
 provides-extras = ["virgil", "dev", "docs"]

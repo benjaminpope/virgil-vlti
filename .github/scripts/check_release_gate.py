@@ -30,9 +30,12 @@ def main():
     repo = os.environ["GITHUB_REPOSITORY"]
     sha = os.environ["GITHUB_SHA"]
     url = f"/repos/{repo}/actions/workflows/{WORKFLOW}/runs?head_sha={sha}&per_page=20"
-    runs = [r for r in get(url)["workflow_runs"] if r["status"] == "completed"]
+    # Push runs only: a pull_request run reports the PR head but tests the merge with main.
+    runs = [
+        r for r in get(url)["workflow_runs"] if r["status"] == "completed" and r["event"] == "push"
+    ]
     if not runs:
-        sys.exit(f"No completed {WORKFLOW} run found for commit {sha}; refusing to publish.")
+        sys.exit(f"No completed push {WORKFLOW} run for commit {sha}; refusing to publish.")
     run = max(runs, key=lambda r: r["run_started_at"])
     if run["conclusion"] != "success":
         sys.exit(f"{run['html_url']} concluded {run['conclusion']}; refusing to publish.")

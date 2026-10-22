@@ -10,4 +10,4 @@ First public release.
 - Closure-phase-only output for nights without calibrators.
 - Calibrator PCA (`virgil-vlti-calpca`) and calibration templates (`virgil-vlti-template`).
 - PIONIER pair test (`virgil-vlti-pairs`) and MATISSE header handling; neither is calibrated here.
-- Packaging: the `dev` extra requires `virgil-astro>=0.4`; releases are published to PyPI by a trusted-publishing workflow gated on the tests passing for the tagged commit.
+- Packaging: the `virgil` and `dev` extras require `virgil-astro>=0.4`; releases are published to PyPI by a trusted-publishing workflow gated on the tests passing for the tagged commit.

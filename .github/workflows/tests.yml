@@ -29,7 +29,8 @@ jobs:
         run: .venv/bin/python -m pytest -q
 
   virgil-main:
-    # Blocking: checks against virgil main, ahead of its next release. Pinned to a commit of virgil's main (bump it deliberately).
+    # Blocking: checks against virgil main, ahead of its next release. Pinned to a
+    # commit of virgil's main (bump it deliberately).
     name: against virgil main
     runs-on: ubuntu-latest
     env:
