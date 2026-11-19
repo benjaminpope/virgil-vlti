@@ -210,6 +210,7 @@ def to_oidata(
     strict=True,
     target=None,
     extras=(),
+    bandwidth=False,
 ):
     """Calibrated OIFITS files as a virgil ``OIData`` with gains and closure offsets.
 
@@ -263,8 +264,9 @@ def to_oidata(
     strict : bool
         With ``template``, refuse files in another configuration (see
         ``template_modes``).
-    target, extras
-        As for ``virgil.oifits.read_oifits``.
+    target, extras, bandwidth
+        As for ``virgil.oifits.read_oifits`` (``bandwidth=True`` models
+        bandwidth smearing).
 
     Returns
     -------
@@ -292,8 +294,8 @@ def to_oidata(
         template = Template.load(template)
     # One record per file gives each file's block of samples; the joint read
     # numbers the frames across files.
-    records = [read_oifits(p, target=target, insname=insname) for p in paths]
-    record = read_oifits(paths, target=target, insname=insname, extras=extras)
+    records = [read_oifits(p, target=target, insname=insname, bandwidth=bandwidth) for p in paths]
+    record = read_oifits(paths, target=target, insname=insname, extras=extras, bandwidth=bandwidth)
     data = OIData(record)
     selected = data
     window = ranges is not None or exclude is not None

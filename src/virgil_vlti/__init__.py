@@ -4,6 +4,7 @@ from importlib.metadata import PackageNotFoundError, version
 
 from .calibrate import calibrate_exposure, flux_ratio, frame_times, group_by_night
 from .load import to_oidata
+from .noise import with_night_terms
 from .products import Exposure, classify, read_exposure
 from .write import write_calibrated
 
@@ -22,5 +23,6 @@ __all__ = [
     "group_by_night",
     "read_exposure",
     "to_oidata",
+    "with_night_terms",
     "write_calibrated",
 ]

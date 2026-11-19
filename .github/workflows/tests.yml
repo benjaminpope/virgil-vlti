@@ -34,7 +34,7 @@ jobs:
     name: against virgil main
     runs-on: ubuntu-latest
     env:
-      VIRGIL_REF: b4219a043294c39e26064ce54b4bc4c498ea22d5
+      VIRGIL_REF: 79d973f81b1e3ca8b4d117af44d61ad6e10df202
     steps:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v6
