@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Night-shared terms (`virgil_vlti.noise.with_night_terms`): a gain per (night, baseline) and a closure-phase offset per (night, triangle) on any virgil `OIData`, with the per-frame telescope, baseline and triangle terms in the same call; and `to_oidata(..., bandwidth=)` passed to `read_oifits`. The night closure-phase offsets need a virgil whose closure modes may span frames (after virgil-astro 0.4.1; expected in 0.4.2); the tests skip on older releases.
+
 ## 0.1.0
 
 First public release.
