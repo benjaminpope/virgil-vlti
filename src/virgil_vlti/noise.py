@@ -87,10 +87,34 @@ def with_night_terms(
     (degrees) are virgil's per-frame gains and closure offsets, one per frame. A zero width leaves
     its term out. The night closure-phase modes need a virgil whose closure modes may span frames
     (virgil#708, after 0.4.1); on an older virgil this raises ``ValueError``.
+
+    Raises
+    ------
+    ValueError
+        If a requested group would replace gains or closure offsets already on ``data`` (for
+        example the template modes ``to_oidata(..., template=...)`` attaches, or its generic
+        gains): virgil's ``with_gains`` / ``with_closure_offsets`` replace, never add, so the
+        earlier terms would be dropped silently and the error understated. Apply this function
+        to data without those terms, or leave its group out.
     """
     g, o = night_modes(data, night_gain, night_t3_deg, boundary_ut)
-    if g is not None or telescope or baseline:
-        data = data.with_gains(telescope=telescope, baseline=baseline, modes=g)
-    if o is not None or triangle_deg:
-        data = data.with_closure_offsets(triangle=np.radians(triangle_deg), modes=o)
+    want_gains = g is not None or bool(telescope) or bool(baseline)
+    want_offsets = o is not None or bool(triangle_deg)
+    if want_gains and getattr(data, "gains", None) is not None:
+        raise ValueError(
+            "data already has gains (e.g. template or generic gains from to_oidata); "
+            "with_night_terms would replace them. Leave the V² groups out or start from data "
+            "without them."
+        )
+    if want_offsets and getattr(data, "phase_offsets", None) is not None:
+        raise ValueError(
+            "data already has closure offsets; with_night_terms would replace them. Leave the "
+            "closure groups out or start from data without them."
+        )
+    if want_gains:
+        data = data.with_gains(telescope=telescope or None, baseline=baseline or None, modes=g)
+    if want_offsets:
+        data = data.with_closure_offsets(
+            triangle=np.radians(triangle_deg) if triangle_deg else None, modes=o
+        )
     return data
